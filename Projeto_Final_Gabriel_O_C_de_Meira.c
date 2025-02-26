@@ -6,6 +6,8 @@
 #include "hardware/uart.h"
 #include "inc/ssd1306.h"
 
+#define led_r 13
+
 // Definições dos pinos
 #define JOY_X 26  // Eixo X (Esquerda/Direita)
 #define JOY_Y 27  // Eixo Y (Cima/Baixo)
@@ -72,11 +74,13 @@ float read_temperature() {
     return 27 - (voltage - 0.706) / 0.001721;
 }
 
-// Função para ativar bipes intermitentes no buzzer se a temperatura ultrapassar o limite
+// Função para ativar bipes intermitentes no buzzer e led vermelho se a temperatura ultrapassar o limite
 void buzzer_alert() {
     if (temperature > TEMP_THRESHOLD) {
         setup_buzzer_pwm(300);  // Define a frequência para 300 Hz (som mais grave)
+        gpio_put(led_r, true);
         sleep_ms(200);  // Som ativo por 200ms
+        gpio_put(led_r, false);
         stop_buzzer();  // Desliga o som
         sleep_ms(300);  // Pausa de 300ms antes do próximo bip
     }
@@ -116,6 +120,10 @@ void ssd1306_update_display(ssd1306_t *ssd) {
 int main() {
 
     stdio_init_all();
+
+    gpio_init(led_r);
+    gpio_set_dir(led_r, GPIO_OUT);  
+    gpio_put(led_r, 0);
 
     
     i2c_init(I2C_PORT, 400 * 1000);
