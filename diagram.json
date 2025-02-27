@@ -33,13 +33,6 @@
       "attrs": { "value": "1000" }
     },
     {
-      "type": "wokwi-pushbutton-6mm",
-      "id": "btn1",
-      "top": -117.4,
-      "left": -720,
-      "attrs": { "color": "green" }
-    },
-    {
       "type": "board-ssd1306",
       "id": "oled1",
       "top": 271.94,
@@ -60,6 +53,13 @@
       "top": -211.8,
       "left": -330.6,
       "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -199.2,
+      "left": -689.4,
+      "attrs": { "volume": "0.1" }
     }
   ],
   "connections": [
@@ -136,8 +136,6 @@
     [ "r1:1", "pico:GP11", "limegreen", [ "v0" ] ],
     [ "r2:2", "pico:GP12", "blue", [ "v0", "h27.6", "v-9.6" ] ],
     [ "r3:2", "pico:GP13", "red", [ "v0", "h37.2", "v-19.2" ] ],
-    [ "btn1:1.r", "pico:GND.1", "black", [ "v0", "h116", "v38.4" ] ],
-    [ "btn1:2.r", "pico:GP5", "green", [ "h106.4", "v48.4" ] ],
     [ "oled1:VCC", "pico:3V3", "red", [ "v0" ] ],
     [ "oled1:SDA", "pico:GP14", "green", [ "v-172.8", "h-115.13", "v-28.8" ] ],
     [ "oled1:SCL", "pico:GP15", "green", [ "v-163.2", "h-105.3" ] ],
@@ -150,7 +148,9 @@
     [ "joystick1:SEL", "pico:GP22", "green", [ "v0" ] ],
     [ "rgb1:COM", "pico:GND.4", "black", [ "v0" ] ],
     [ "joystick1:VERT", "pico:GP26", "green", [ "v0" ] ],
-    [ "joystick1:HORZ", "pico:GP27", "green", [ "v0" ] ]
+    [ "joystick1:HORZ", "pico:GP27", "green", [ "v0" ] ],
+    [ "bz1:1", "pico:GND.3", "black", [ "v0" ] ],
+    [ "bz1:2", "pico:GP10", "red", [ "v124.8", "h95.6", "v19.2" ] ]
   ],
   "dependencies": {}
 }
